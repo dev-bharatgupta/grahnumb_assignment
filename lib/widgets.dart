@@ -1,7 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:shimmer/shimmer.dart';
 
 imageWidget(
     {required String url,
@@ -9,6 +8,10 @@ imageWidget(
     required double width,
     required double radius}) {
   return CachedNetworkImage(
+    memCacheWidth: 500,
+    memCacheHeight: 500,
+    maxHeightDiskCache: 500,
+    maxWidthDiskCache: 500,
     imageUrl: url,
     imageBuilder: (context, imageProvider) => Container(
       height: height,
@@ -85,39 +88,3 @@ listCard(
   );
 }
 
-shimmerLoading() {
-  print("adsfhdsf");
-  return Shimmer.fromColors(
-    baseColor: Color(0xFFE0E0E0)     ,
-    highlightColor: Color(0xFFF5F5F5),
-    child: SingleChildScrollView(
-      physics: NeverScrollableScrollPhysics(),
-      child: Column(
-        children: [
-          for (int i = 0; i < 8; i++)
-            Row(
-              children: [
-                CircleAvatar(
-                  radius: 60,
-                ),
-                SizedBox(
-                  width: 10,
-                ),
-                Expanded(
-                    child: Column(
-                  children: [
-                    for (i = 0; i < 3; i++)
-                      Container(
-                        width: double.infinity,
-                        height: 15,
-                        margin: EdgeInsets.only(bottom: 5),
-                      )
-                  ],
-                ))
-              ],
-            )
-        ],
-      ),
-    ),
-  );
-}
